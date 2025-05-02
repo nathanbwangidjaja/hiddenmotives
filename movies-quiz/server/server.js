@@ -69,7 +69,6 @@ Output ONLY valid JSON: a pure array of exactly ${count} objects, no markdown, n
 
     let text = resp.choices[0].message.content.trim();
 
-    // 🧼 Strip markdown code fences
     if (text.startsWith("```")) {
       text = text.replace(/^```(?:json)?\s*/, "").replace(/```$/, "").trim();
     }
@@ -78,13 +77,11 @@ Output ONLY valid JSON: a pure array of exactly ${count} objects, no markdown, n
 
     const questions = JSON.parse(text);
 
-    // 🛡 Validate array length
     if (!Array.isArray(questions)) throw new Error("AI output is not an array");
     if (questions.length !== count) {
       throw new Error(`Expected ${count} questions but got ${questions.length}`);
     }
 
-    // 🔍 Validate each question's schema
     questions.forEach((q, i) => {
       if (!q.id || typeof q.text !== "string" || !Array.isArray(q.options) || q.options.length !== 3) {
         throw new Error(`Malformed question at index ${i} (ID ${q.id})`);

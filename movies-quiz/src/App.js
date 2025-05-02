@@ -15,7 +15,7 @@ export default function App() {
   useEffect(() => {
     if (answers.length === 5) {
       setLoading(true);
-      fetch('/api/generate-questions', {
+      fetch('https://hiddenmotives.onrender.com/api/generate-questions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ answers, total: 20, axes: ['desire', 'violence'] }),
