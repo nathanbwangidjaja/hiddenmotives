@@ -8,7 +8,7 @@ export default function App() {
   const [questions, setQuestions] = useState(baseQuestions.slice(0, 5));
   const [currentId, setCurrentId] = useState(baseQuestions[0].id);
   const [answers, setAnswers] = useState([]);
-  const [scores, setScores] = useState({ desire: 0, violence: 0 });
+  const [scores, setScores] = useState({ desire: 0, violence: 0 , approach: 0});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -18,7 +18,7 @@ export default function App() {
       fetch('https://hiddenmotives.onrender.com/api/generate-questions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ answers, total: 20, axes: ['desire', 'violence'] }),
+        body: JSON.stringify({ answers, total: 20, axes: ['desire', 'violence', 'approach'] }),
       })
         .then(res => res.text().then(text => ({ ok: res.ok, text })))
         .then(({ ok, text }) => {
@@ -37,6 +37,7 @@ export default function App() {
     setScores(s => ({
       desire: s.desire + opt.desire,
       violence: s.violence + opt.violence,
+      approach: s.approach + opt.approach,
     }));
 
     setAnswers(a => [
@@ -47,6 +48,7 @@ export default function App() {
         choice: opt.text,
         desire: opt.desire,
         violence: opt.violence,
+        approach: opt.approach,
         nextId: opt.nextId,
       }
     ]);
@@ -85,7 +87,7 @@ export default function App() {
           <h1 className="result-title">{name}</h1>
           <p className="result-desc">{desc}</p>
           <p className="result-stats">
-            <strong>Desire:</strong> {scores.desire} | <strong>Violence:</strong> {scores.violence}
+            <strong>Desire:</strong> {scores.desire} | <strong>Violence:</strong> {scores.violence} | <strong>Approach:</strong> {scores.approach}
           </p>
         </div>
       </div>

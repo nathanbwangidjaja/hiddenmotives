@@ -29,22 +29,23 @@ app.post("/api/generate-questions", async (req, res) => {
     The final question (id ${total}) must have "nextId": null.
 
     Settings:
-    - Axes: Desire (horizontal), Violence (vertical)
+    - Axes: Desire (horizontal), Violence (vertical), Approach (diagonal)
     - Inspired by:
     • Memories of Murder → Obsessive Investigator & Intuitive Enforcer  
     • Save the Green Planet → Paranoid Savior & Calculated Manipulator  
     • The Battleship Island → Devoted Protector, Reluctant Warrior, Persistent Survivor, Charismatic Leader  
 
     User’s first ${answers.length} answers:
-    ${answers.map(a => `Q${a.questionId}: "${a.choice}" (desire=${a.desire}, violence=${a.violence})`).join("\n")}
+    ${answers.map(a => `Q${a.questionId}: "${a.choice}" (desire=${a.desire}, violence=${a.violence}, approach=${a.approach})`).join("\n")}
 
     For each of the ${count} questions:
     - id: integer from ${startId} to ${total}  
     - text: string  
-    - options: array[3] of objects:
+    - options: array[4] of objects:
         * text: string  
         * desire: integer  
         * violence: integer  
+        * approach: integer
         * nextId: id + 1 (or null if id == ${total})
 
     Output ONLY valid JSON:  
@@ -94,6 +95,7 @@ app.post("/api/generate-questions", async (req, res) => {
           typeof opt.text !== "string" ||
           typeof opt.desire !== "number" ||
           typeof opt.violence !== "number" ||
+            typeof opt.approach !== "number" ||
           (opt.nextId !== null && typeof opt.nextId !== "number")
         ) {
           throw new Error(`Invalid option in question ${q.id}, option ${j + 1}`);

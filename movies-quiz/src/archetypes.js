@@ -3,60 +3,73 @@
 export const archetypes = [
     {
       name: "The Obsessive Investigator",
-      x: 4,
-      y: 1,
-      desc: "You’re driven by a relentless need to examine every detail. Your meticulous approach often unveils hidden truths, but when obstacles arise, your frustration can cloud judgment."
+      x: 8,  // High drive
+      y: 2,  // Low aggression
+      z: 8,  // Highly analytical
+      desc: "You dissect every clue with precision, driven more by logic than emotion."
     },
     {
       name: "The Intuitive Enforcer",
-      x: 2,
-      y: 3,
-      desc: "You rely on instinct to guide your actions, cutting through complexity with quick decisions. While your boldness can rapidly resolve challenges, it sometimes sparks unintended conflict."
+      x: 4,  // Moderate drive
+      y: 6,  // High aggression
+      z: 0,  // Highly impulsive
+      desc: "You trust your gut and move swiftly, often acting before you fully think things through."
     },
     {
       name: "The Paranoid Savior",
-      x: 4,
-      y: 4,
-      desc: "A sense of looming danger fuels your every move. You prepare for worst-case scenarios with unwavering conviction, even if it means acting on suspicions others deem unfounded."
+      x: 8,  // High drive
+      y: 8,  // High aggression
+      z: 2,  // Low analytical, high urgency
+      desc: "You perceive threats everywhere and respond with force, guided by fear more than strategy."
     },
     {
       name: "The Calculated Manipulator",
-      x: 1,
-      y: 1,
-      desc: "You plan several moves ahead, orchestrating events from behind the scenes. Your strategic calm belies a willingness to blur moral lines in pursuit of desired outcomes."
+      x: 2,  // Low drive
+      y: 2,  // Low aggression
+      z: 6,  // Highly strategic
+      desc: "Your every move is part of a hidden plan; you prefer to pull strings from the shadows."
     },
     {
       name: "The Devoted Protector",
-      x: 3,
-      y: 2,
-      desc: "The safety of those you care about defines your purpose. You adapt resourcefully to threats, often putting yourself at risk so others can stand aside, shielded from harm."
+      x: 6,  // High drive
+      y: 4,  // Moderate aggression
+      z: 4,  // Balanced approach
+      desc: "Your loyalty to loved ones fuels you; you mix courage with a measured hand."
     },
     {
       name: "The Reluctant Warrior",
-      x: 2,
-      y: 2,
-      desc: "You hesitate before conflict, but when forced into action, you draw on deep reserves of courage. Your struggle between restraint and force shapes your path to redemption."
+      x: 4,  // Moderate drive
+      y: 4,  // Moderate aggression
+      z: 4,  // Balanced approach
+      desc: "You step into conflict only when necessary, balancing conviction with restraint."
     },
     {
       name: "The Persistent Survivor",
-      x: 0,
-      y: 0,
-      desc: "You endure hardships with quiet strength, finding hope in even the bleakest circumstances. Your resilience allows you to navigate adversity without resorting to violence."
+      x: 0,  // Low drive
+      y: 0,  // Low aggression
+      z: 6,  // Strategic endurance
+      desc: "You endure challenges quietly, preferring careful patience over confrontation."
     },
     {
       name: "The Charismatic Leader",
-      x: 3,
-      y: 3,
-      desc: "You inspire others with clarity of purpose and unwavering conviction. Your leadership fosters unity and drives collective efforts toward transformative change."
+      x: 6,  // High drive
+      y: 6,  // High aggression
+      z: 4,  // Balanced but inspiring
+      desc: "You rally others with vision and bold action, fusing passion with purpose."
     }
   ];
   
-  export function getBestMatch({ desire, violence }) {
+  // Three-dimensional Euclidean matching
+  export function getBestMatch({ desire, violence, approach }, totalQuestions = 20) {
+    // Normalize raw sums (range -totalQuestions...+totalQuestions) to 0...8
+    const norm = v => ((v + totalQuestions) / (2 * totalQuestions)) * 8;
+    const dx = norm(desire);
+    const dy = norm(violence);
+    const dz = norm(approach);
+  
     let best = { archetype: null, dist: Infinity };
     for (const a of archetypes) {
-      const dx = desire   - a.x;
-      const dy = violence - a.y;
-      const dist = Math.hypot(dx, dy);
+      const dist = Math.hypot(dx - a.x, dy - a.y, dz - a.z);
       if (dist < best.dist) {
         best = { archetype: a, dist };
       }
