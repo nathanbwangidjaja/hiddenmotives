@@ -51,7 +51,6 @@ export const archetypes = [
     }
   ];
   
-  // Euclidean-distance matcher
   export function getBestMatch({ desire, violence }) {
     let best = { archetype: null, dist: Infinity };
     for (const a of archetypes) {
