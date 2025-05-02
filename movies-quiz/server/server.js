@@ -23,38 +23,40 @@ app.post("/api/generate-questions", async (req, res) => {
   console.log("total:", total);
 
   const prompt = `
-You are an expert quiz designer creating a personality-quiz game around two axes: Desire and Violence, inspired by three Korean films and their key archetypes:
+    ***IMPORTANT: RETURN EXACTLY ${count} QUESTIONS IN A SINGLE JSON ARRAY, WITH NO SURROUNDING TEXT OR MARKDOWN.***
 
-• Memories of Murder  
-  1. The Obsessive Investigator: Analytical, principled, emotionally volatile; Desire=Truth & justice; Violence=Suppressed until provoked  
-  2. The Intuitive Enforcer: Instinct-driven, impulsive; Desire=Quick resolution; Violence=Utilized as a tool  
+    These questions must be numbered *inclusive* from ${startId} through ${total}.  
+    The final question (id ${total}) must have "nextId": null.
 
-• Save the Green Planet  
-  3. The Paranoid Savior: Delusional, trauma-driven; Desire=To save the world; Violence=Justified by perceived threats  
-  4. The Calculated Manipulator: Composed, strategic; Desire=Self-preservation; Violence=Delegated or indirect  
+    Settings:
+    - Axes: Desire (horizontal), Violence (vertical)
+    - Inspired by:
+    • Memories of Murder → Obsessive Investigator & Intuitive Enforcer  
+    • Save the Green Planet → Paranoid Savior & Calculated Manipulator  
+    • The Battleship Island → Devoted Protector, Reluctant Warrior, Persistent Survivor, Charismatic Leader  
 
-• The Battleship Island  
-  5. The Devoted Protector: Caring, resourceful; Desire=Family’s safety; Violence=When loved ones threatened  
-  6. The Reluctant Warrior: Tough, loyal; Desire=Personal redemption; Violence=A means to an end  
-  7. The Persistent Survivor: Enduring, hopeful; Desire=Freedom & dignity; Violence=Avoided unless necessary  
-  8. The Charismatic Leader: Inspirational, strategic; Desire=Collective liberation; Violence=Directed toward systemic change  
+    User’s first ${answers.length} answers:
+    ${answers.map(a => `Q${a.questionId}: "${a.choice}" (desire=${a.desire}, violence=${a.violence})`).join("\n")}
 
-Using the user’s first ${answers.length} answers (shown below), generate exactly ${count} additional quiz questions numbered ${startId} through ${total}, inclusive.
+    For each of the ${count} questions:
+    - id: integer from ${startId} to ${total}  
+    - text: string  
+    - options: array[3] of objects:
+        * text: string  
+        * desire: integer  
+        * violence: integer  
+        * nextId: id + 1 (or null if id == ${total})
 
-Each question must be a valid JSON object:
-- id: the question number  
-- text: the question prompt  
-- options: an array of **3** answer choices, each with:
-  * text: the answer text  
-  * desire: integer (Desire weight)  
-  * violence: integer (Violence weight)  
-  * nextId: id + 1 (or null if id == ${total})  
+    Output ONLY valid JSON:  
+    \`\`\`json
+    [ 
+    { "id": 6, "text": "...", "options": [ ... ] },  
+    …  
+    { "id": ${total}, "text": "...", "options": [ … { "nextId": null } ] }  
+    ]
+    \`\`\`
+    `.trim();
 
-Here are the user’s previous answers:
-${answers.map(a => `Q${a.questionId}: "${a.choice}" (desire=${a.desire}, violence=${a.violence})`).join("\n")}
-
-Output ONLY valid JSON: a pure array of exactly ${count} objects, no markdown, no explanation.
-`.trim();
 
   try {
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
