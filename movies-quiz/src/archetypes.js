@@ -6,7 +6,7 @@ export const archetypes = [
       y: 2,  // Low aggression
       z: 8,  // Highly analytical
       desc: "You dissect every clue with precision, driven more by logic than emotion.",
-      img: "/hiddenmotives/archetypes/obsessive-investigator.png"
+      img: "/archetypes/obsessive-investigator.png"
     },
     {
       name: "The Intuitive Enforcer",
@@ -14,7 +14,7 @@ export const archetypes = [
       y: 6,  // High aggression
       z: 0,  // Highly impulsive
       desc: "You trust your gut and move swiftly, often acting before you fully think things through.",
-      img: "/hiddenmotives/archetypes/intuitive-enforcer.png"
+      img: "/archetypes/intuitive-enforcer.png"
     },
     {
       name: "The Paranoid Savior",
@@ -22,7 +22,7 @@ export const archetypes = [
       y: 8,  // High aggression
       z: 2,  // Low analytical, high urgency
       desc: "You perceive threats everywhere and respond with force, guided by fear more than strategy.",
-      img: "/hiddenmotives/archetypes/paranoid-savior.png"
+      img: "/archetypes/paranoid-savior.png"
     },
     {
       name: "The Calculated Manipulator",
@@ -30,7 +30,7 @@ export const archetypes = [
       y: 2,  // Low aggression
       z: 6,  // Highly strategic
       desc: "Your every move is part of a hidden plan; you prefer to pull strings from the shadows.",
-      img: "/hiddenmotives/archetypes/calculated-manipulator.png"
+      img: "/archetypes/calculated-manipulator.png"
     },
     {
       name: "The Devoted Protector",
@@ -38,7 +38,7 @@ export const archetypes = [
       y: 4,  // Moderate aggression
       z: 4,  // Balanced approach
       desc: "Your loyalty to loved ones fuels you; you mix courage with a measured hand.",
-      img: "/hiddenmotives/archetypes/devoted-protector.png"
+      img: "/archetypes/devoted-protector.png"
     },
     {
       name: "The Reluctant Warrior",
@@ -46,7 +46,7 @@ export const archetypes = [
       y: 4,  // Moderate aggression
       z: 4,  // Balanced approach
       desc: "You step into conflict only when necessary, balancing conviction with restraint.",
-      img: "/hiddenmotives/archetypes/reluctant-warrior.png"
+      img: "/archetypes/reluctant-warrior.png"
     },
     {
       name: "The Persistent Survivor",
@@ -54,7 +54,7 @@ export const archetypes = [
       y: 0,  // Low aggression
       z: 6,  // Strategic endurance
       desc: "You endure challenges quietly, preferring careful patience over confrontation.",
-      img: "/hiddenmotives/archetypes/persistent-survivor.png"
+      img: "/archetypes/persistent-survivor.png"
     },
     {
       name: "The Charismatic Leader",
@@ -62,7 +62,7 @@ export const archetypes = [
       y: 6,  // High aggression
       z: 4,  // Balanced but inspiring
       desc: "You rally others with vision and bold action, fusing passion with purpose.",
-      img: "/hiddenmotives/archetypes/charismatic-leader.png"
+      img: "/archetypes/charismatic-leader.png"
     }
   ];
   
