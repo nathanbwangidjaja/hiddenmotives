@@ -1,20 +1,33 @@
 /* src/App.css */
 
-.app {
-  background-color: #1e1e1e;
-  color: #ececec;
-  min-height: 100vh;
-  padding: 2rem;
-  font-family: 'Segoe UI', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --bg-color: #121212;
+  --card-bg: rgba(20, 20, 20, 0.85);
+  --text-color: #f5f5f5;
+  --accent-red: #c0392b;
+  --border-red: #7f0000;
+  --shadow-dark: rgba(0, 0, 0, 0.8);
 }
 
-.quiz-box {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #2b2b2b;
+.app {
+  background: var(--bg-color) url('./textures/dark-grunge.png') center/cover no-repeat fixed;
+  color: var(--text-color);
+  min-height: 100vh;
   padding: 2rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.quiz-box,
+.result {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: var(--card-bg);
+  padding: 2rem;
+  border: 2px solid var(--border-red);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px var(--shadow-dark), 0 0 10px var(--border-red);
 }
 
 .header {
@@ -22,9 +35,18 @@
   margin-bottom: 1.5rem;
 }
 
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+
 .question-number {
-  font-size: 1.25rem;
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  color: var(--accent-red);
   margin: 0;
+  text-shadow: 0 0 8px var(--border-red);
+  animation: flicker 3s infinite;
 }
 
 .question {
@@ -36,22 +58,25 @@
 .options {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .option-button {
-  background-color: #444;
-  color: #ececec;
-  border: none;
+  background: linear-gradient(135deg, #222 0%, #111 100%);
+  color: var(--text-color);
+  border: 1px solid var(--accent-red);
   padding: 0.75rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background 0.2s;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 0 5px var(--shadow-dark);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .option-button:hover {
-  background-color: #555;
+  transform: scale(1.02);
+  box-shadow: 0 0 15px var(--accent-red);
 }
 
 .progress-text {
@@ -63,7 +88,7 @@
 
 .progress-bar {
   height: 8px;
-  background-color: #444;
+  background: #333;
   border-radius: 4px;
   overflow: hidden;
   margin-top: 0.5rem;
@@ -71,27 +96,23 @@
 
 .progress {
   height: 100%;
-  background-color: #d9534f;
+  background: var(--accent-red);
   transition: width 0.3s ease;
 }
 
-.result {
-  text-align: center;
-  padding: 2rem;
-  background-color: #2b2b2b;
-  border-radius: 8px;
-  max-width: 600px;
-  margin: 2rem auto;
-}
-
 .result-title {
-  font-size: 2rem;
+  font-family: 'Creepster', cursive;
+  font-size: 2.25rem;
   margin-bottom: 1rem;
+  color: var(--accent-red);
+  text-shadow: 0 0 12px var(--border-red);
+  animation: flicker 2.5s infinite;
 }
 
 .result-desc {
   font-size: 1.1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
 .result-stats {
@@ -103,4 +124,5 @@
 .error-message {
   text-align: center;
   font-size: 1.2rem;
+  color: var(--accent-red);
 }

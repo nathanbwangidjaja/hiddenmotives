@@ -84,6 +84,12 @@ export default function App() {
     return (
       <div className="app">
         <div className="result">
+            {/* Portrait */}
+          <img
+            src={img}
+            alt={name}
+            style={{ width: 200, borderRadius: 8, marginBottom: '1rem' }}
+          />
           <h1 className="result-title">{name}</h1>
           <p className="result-desc">{desc}</p>
           <p className="result-stats">
