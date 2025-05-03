@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/hiddenmotives/static/css/main.c4545fb4.css",
-    "main.js": "/hiddenmotives/static/js/main.7c43da88.js",
+    "main.css": "/hiddenmotives/static/css/main.b2a024ae.css",
+    "main.js": "/hiddenmotives/static/js/main.e93b2f82.js",
     "static/js/453.9abd3ca6.chunk.js": "/hiddenmotives/static/js/453.9abd3ca6.chunk.js",
     "static/media/dark-grunge.png": "/hiddenmotives/static/media/dark-grunge.ccbb8a92e319dc641106.png",
     "index.html": "/hiddenmotives/index.html",
-    "main.c4545fb4.css.map": "/hiddenmotives/static/css/main.c4545fb4.css.map",
-    "main.7c43da88.js.map": "/hiddenmotives/static/js/main.7c43da88.js.map",
+    "main.b2a024ae.css.map": "/hiddenmotives/static/css/main.b2a024ae.css.map",
+    "main.e93b2f82.js.map": "/hiddenmotives/static/js/main.e93b2f82.js.map",
     "453.9abd3ca6.chunk.js.map": "/hiddenmotives/static/js/453.9abd3ca6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4545fb4.css",
-    "static/js/main.7c43da88.js"
+    "static/css/main.b2a024ae.css",
+    "static/js/main.e93b2f82.js"
   ]
 }
