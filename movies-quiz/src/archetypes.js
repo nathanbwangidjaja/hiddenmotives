@@ -1,12 +1,12 @@
 // src/archetypes.js
-import obsessiveInvestigator from "./archetypes/obsessive-investigator.png";
-import intuitiveEnforcer from "./archetypes/intuitive-enforcer.png";
-import paranoidSavior from "./archetypes/paranoid-savior.png";
-import calculatedManipulator from "./archetypes/calculated-manipulator.png";
-import devotedProtector from "./archetypes/devoted-protector.png";
-import reluctantWarrior from "./archetypes/reluctant-warrior.png";
-import persistentSurvivor from "./archetypes/persistent-survivor.png";
-import charismaticLeader from "./archetypes/charismatic-leader.png";
+import obsessiveInvestigator from "/archetypes/obsessive-investigator.png";
+import intuitiveEnforcer from "/archetypes/intuitive-enforcer.png";
+import paranoidSavior from "/archetypes/paranoid-savior.png";
+import calculatedManipulator from "/archetypes/calculated-manipulator.png";
+import devotedProtector from "/archetypes/devoted-protector.png";
+import reluctantWarrior from "/archetypes/reluctant-warrior.png";
+import persistentSurvivor from "/archetypes/persistent-survivor.png";
+import charismaticLeader from "/archetypes/charismatic-leader.png";
 
 
 export const archetypes = [
