@@ -8,7 +8,7 @@ export default function App() {
   const [questions, setQuestions] = useState(baseQuestions.slice(0, 5));
   const [currentId, setCurrentId] = useState(baseQuestions[0].id);
   const [answers, setAnswers] = useState([]);
-  const [scores, setScores] = useState({ desire: 0, violence: 0 , approach: 0});
+  const [scores, setScores] = useState({ desire: 0, violence: 0, approach: 0 });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -80,11 +80,11 @@ export default function App() {
     );
   }
   if (currentId === null) {
-    const { name, desc } = getBestMatch(scores);
+    const archetype = getBestMatch(scores);
+    const { name, desc, img } = archetype;
     return (
       <div className="app">
         <div className="result">
-            {/* Portrait */}
           <img
             src={img}
             alt={name}
@@ -93,7 +93,9 @@ export default function App() {
           <h1 className="result-title">{name}</h1>
           <p className="result-desc">{desc}</p>
           <p className="result-stats">
-            <strong>Desire:</strong> {scores.desire} | <strong>Violence:</strong> {scores.violence} | <strong>Approach:</strong> {scores.approach}
+            <strong>Desire:</strong> {scores.desire} |{' '}
+            <strong>Violence:</strong> {scores.violence} |{' '}
+            <strong>Approach:</strong> {scores.approach}
           </p>
         </div>
       </div>
@@ -103,7 +105,7 @@ export default function App() {
     return (
       <div className="app">
         <div className="quiz-box">
-          <p className="loading">Preparing next questions...</p>
+          <p className="loading">Preparing next questions…</p>
         </div>
       </div>
     );
