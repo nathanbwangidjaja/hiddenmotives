@@ -86,7 +86,7 @@ export default function App() {
       <div className="app">
         <div className="result">
           <img
-            src={process.env.PUBLIC_URL + img}
+            src={img}
             alt={name}
             style={{ width: 200, borderRadius: 8, marginBottom: '1rem' }}
           />
