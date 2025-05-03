@@ -41,7 +41,7 @@ app.post("/api/generate-questions", async (req, res) => {
     For each of the ${count} questions:
     - id: integer from ${startId} to ${total}  
     - text: string  
-    - options: array[4] of objects:
+    - options: array[3] of objects:
         * text: string  
         * desire: integer  
         * violence: integer  
