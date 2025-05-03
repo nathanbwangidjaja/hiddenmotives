@@ -28,7 +28,7 @@
   border: 2px solid var(--border-red);
   border-radius: 8px;
   box-shadow: 0 0 20px var(--shadow-dark), 0 0 10px var(--border-red);
-  align-items: center;
+  
 }
 
 .header {
