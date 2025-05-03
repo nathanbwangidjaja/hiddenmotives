@@ -23,28 +23,40 @@ app.post("/api/generate-questions", async (req, res) => {
   console.log("total:", total);
 
   const prompt = `
-  ***IMPORTANT***  
-  1) Return **exactly ${count}** questions in a single JSON array, numbered ${startId}–${total} inclusive.  
-  2) Every question MUST include your three weights (desire, violence, approach) using the same integer scale as before.  
-  3) Questions should feel thematically tied to the films and archetypes (Memories of Murder, Save the Green Planet, Battleship Island) but never mention the movies by name—use scenarios that echo those characters’ dilemmas.  
-  4) Each new question must logically follow from one of the user’s previous answers, deepening the narrative.
-  
-  User’s first ${answers.length} answers:
-  ${answers.map(a => `Q${a.questionId}: "${a.choice}" (desire=${a.desire}, violence=${a.violence}, approach=${a.approach})`).join("\n")}
-  
-  For questions ${startId} through ${total}:
-  - id: integer  
-  - text: a scenario or dilemma that builds on what the user just chose  
-  - options: array of **3** objects, each with:  
-      * text: the choice text  
-      * desire: integer weight  
-      * violence: integer weight  
-      * approach: integer weight  
-      * nextId: next id (or null if ${total})
-  
-  Output **only** valid JSON. No commentary, markdown, or extra keys.
-  `.trim();
-  
+    ***IMPORTANT: RETURN EXACTLY ${count} QUESTIONS IN A SINGLE JSON ARRAY, WITH NO SURROUNDING TEXT OR MARKDOWN.***
+
+    These questions must be numbered *inclusive* from ${startId} through ${total}. Questions should feel thematically tied to the films and archetypes (Memories of Murder, Save the Green Planet, Battleship Island) but never mention the movies by name—use scenarios that echo those characters’ dilemmas
+    The final question (id ${total}) must have "nextId": null. Each new question must logically follow from one of the user’s previous answers, deepening the narrative.
+
+    Settings:
+    - Axes: Desire (horizontal), Violence (vertical), Approach (diagonal)
+    - Inspired by:
+    • Memories of Murder → Obsessive Investigator & Intuitive Enforcer  
+    • Save the Green Planet → Paranoid Savior & Calculated Manipulator  
+    • The Battleship Island → Devoted Protector, Reluctant Warrior, Persistent Survivor, Charismatic Leader  
+
+    User’s first ${answers.length} answers:
+    ${answers.map(a => `Q${a.questionId}: "${a.choice}" (desire=${a.desire}, violence=${a.violence}, approach=${a.approach})`).join("\n")}
+
+    For each of the ${count} questions:
+    - id: integer from ${startId} to ${total}  
+    - text: string  
+    - options: array[4] of objects:
+        * text: string  
+        * desire: integer  
+        * violence: integer  
+        * approach: integer
+        * nextId: id + 1 (or null if id == ${total})
+
+    Output ONLY valid JSON:  
+    \`\`\`json
+    [ 
+    { "id": 6, "text": "...", "options": [ ... ] },  
+    …  
+    { "id": ${total}, "text": "...", "options": [ … { "nextId": null } ] }  
+    ]
+    \`\`\`
+    `.trim();
 
 
   try {
