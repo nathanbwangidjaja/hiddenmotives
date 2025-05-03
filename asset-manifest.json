@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/hiddenmotives/static/css/main.c4545fb4.css",
-    "main.js": "/hiddenmotives/static/js/main.0ffcc764.js",
+    "main.js": "/hiddenmotives/static/js/main.8367fe1f.js",
     "static/js/453.9abd3ca6.chunk.js": "/hiddenmotives/static/js/453.9abd3ca6.chunk.js",
     "static/media/dark-grunge.png": "/hiddenmotives/static/media/dark-grunge.ccbb8a92e319dc641106.png",
     "index.html": "/hiddenmotives/index.html",
     "main.c4545fb4.css.map": "/hiddenmotives/static/css/main.c4545fb4.css.map",
-    "main.0ffcc764.js.map": "/hiddenmotives/static/js/main.0ffcc764.js.map",
+    "main.8367fe1f.js.map": "/hiddenmotives/static/js/main.8367fe1f.js.map",
     "453.9abd3ca6.chunk.js.map": "/hiddenmotives/static/js/453.9abd3ca6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c4545fb4.css",
-    "static/js/main.0ffcc764.js"
+    "static/js/main.8367fe1f.js"
   ]
 }
